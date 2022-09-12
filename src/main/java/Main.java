@@ -1,7 +1,9 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     static Scanner scan = new Scanner(System.in);
+    static Database database = new Database();
 
     public static void main(String[] arg) {
         Main program = new Main();
@@ -33,6 +35,11 @@ public class Main {
         String superPower = scan.next();
 
         boolean isHuman = false;
+        char humanStatus;
+
+        database.createSuperhero(realName, heroName, creationYear, superPower, isHuman);
+
+        System.out.printf("%s %s %d %s",realName, heroName, creationYear, superPower);
 
     }
 }
