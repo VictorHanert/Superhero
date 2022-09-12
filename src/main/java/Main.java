@@ -1,26 +1,38 @@
 import java.util.Scanner;
 
 public class Main {
+    static Scanner scan = new Scanner(System.in);
+
     public static void main(String[] arg) {
-        Scanner scan = new Scanner(System.in);
+        Main program = new Main();
 
-        String heroName;
-        String realName;
-        String superPower;
-        int creationYear;
-        boolean human;
+        program.start();
+    }
 
+    public void start(){
+        udskrivVelkomst();
+    }
 
-        System.out.println("Velkommen til Superhelte-database;");
+    public void udskrivVelkomst() {
+        createSuperHero();
+    }
 
-        System.out.println("Hvilken superhelt?");
-        heroName = scan.next();
+    public void createSuperHero() {
+        System.out.println("Velkommen til Superhelte-database.");
 
-        System.out.println("Hvad er " + heroName + "'s superkræft?");
-        superPower = scan.next();
+        System.out.println("Indtast superheltens rigtige navn: ");
+        String realName = scan.next();
 
-        System.out.println(superPower);
+        System.out.print("Indtast superheltens heltenavn: ");
+        String heroName = scan.next();
 
-        Superhero superheroes = new Superhero();
+        System.out.print("Hvornår blev superhelten skabt? ");
+        int creationYear = scan.nextInt();
+
+        System.out.print("Hvilke superkræfter besidder superhelten? ");
+        String superPower = scan.next();
+
+        boolean isHuman = false;
+
     }
 }
