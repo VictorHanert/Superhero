@@ -14,17 +14,19 @@ public class Main {
 
     public void start() {
         createSuperHero();
+        printSuperHero();
     }
 
     public void createSuperHero() {
         do {
+            System.out.println("Velkommen til Superhelte-database.");
             System.out.println("1) for at oprette");
             System.out.println("9) for at afslutte");
             menuvalg = scan.nextInt();
             scan.nextLine(); // Fixer Scanner-bug
 
             if (menuvalg == 1) {
-                System.out.println("Velkommen til Superhelte-database.");
+                System.out.println("Opret en superhelt.");
 
                 System.out.println("Indtast superheltens rigtige navn: ");
                 String realName = scan.nextLine();
@@ -40,17 +42,25 @@ public class Main {
 
                 boolean isHuman = scan.nextLine().substring(0, 1).equalsIgnoreCase("j");
 
-                database.createSuperhero(realName, heroName, creationYear, superPower, isHuman);
+                System.out.println("Hvor stor en kræft har helten (hvis 1 er for et menneske) ");
+                double power = scan.nextDouble();
 
-                for (Object hero : database.superhero) {
-                    System.out.println(hero);
-                }
-
+                database.createSuperhero(realName, heroName, creationYear, superPower, isHuman, power);
                 start();
 
             } else if (menuvalg == 9) {
                 System.out.println("Program afsluttes!");
             }
         } while (menuvalg != 1 && menuvalg != 9);
+    }
+
+    public void printSuperHero() {
+        System.out.println("Liste af superhelte");
+        System.out.println("-".repeat(20));
+        for (Object hero : database.superhero) {
+            System.out.println(hero);
+            System.out.println("-".repeat(20));
+            start();
+        }
     }
 }

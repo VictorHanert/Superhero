@@ -4,13 +4,15 @@ public class Superhero {
     private int creationYear;
     private String superPower;
     private boolean isHuman;
+    private double power;
 
-    public Superhero (String realName, String heroName, int creationYear, String superPower, boolean isHuman) {
+    public Superhero (String realName, String heroName, int creationYear, String superPower, boolean isHuman, double power) {
         this.realName = realName;
         this.heroName = heroName;
         this.creationYear = creationYear;
         this.superPower = superPower;
         this.isHuman = isHuman;
+        this.power = power;
     }
 
     @Override
@@ -21,6 +23,7 @@ public class Superhero {
                 ", creationYear=" + creationYear +
                 ", superPower='" + superPower + '\'' +
                 ", isHuman=" + isHuman +
+                ", power=" + power +
                 '}';
     }
 }
