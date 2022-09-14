@@ -62,21 +62,21 @@ public class Main {
             } else if (menuvalg == 3) {
                 searchSuperHero();
             } else if (menuvalg == 9) {
-                System.exit(1);
+                System.exit(1); // afslutter programmet
             }
         } while (menuvalg != 1 && menuvalg != 2 && menuvalg != 9);
     }
 
     public void printSuperHero() {
-        System.out.println("Liste af superhelte");
+        System.out.println("\u001b[1mListe af superhelte\u001b[0m");
         System.out.println("\u001b[1m-\u001b[0m".repeat(20));
         for (Superhero superhero : database.getAllSuperheroes()){
             System.out.println("Superhelte navn: " + superhero.getHeroName());
-            System.out.println("Superkraft: " + superhero.getSuperPower());
             System.out.println("Virkeligt navn: " + superhero.getRealName());
+            System.out.println("Superkraft: " + superhero.getSuperPower());
             System.out.println("Oprindelsesår: " + superhero.getCreationYear());
             System.out.println("Er menneske: " + superhero.isHuman());
-            System.out.println("Styrke: " + superhero.getPower());
+            System.out.println("Styrkeniveau: " + superhero.getPower());
             System.out.println("\u001b[1m-\u001b[0m".repeat(20));
 
         }
@@ -85,6 +85,26 @@ public class Main {
     }
 
     public void searchSuperHero() {
+        System.out.println("\u001b[1m-\u001b[0m".repeat(20));
+        System.out.println("Indtast søgeord: ");
+        String searchTerm = scan.nextLine();
 
+        // tilføjet "searchTerm fra input til database til søgningen
+        Superhero superhero = database.searchForSuperhero(searchTerm);
+
+        // hvis der ikke er fundet en helt, print fejl, og søg igen
+        if (superhero == null) {
+            System.out.println("Superhelt ikke fundet");
+            System.out.println("------------------------------------");
+            searchSuperHero();
+        } else {  // hvis fundet, print heltens info
+            System.out.println("Superhelte navn: " + superhero.getHeroName());
+            System.out.println("Virkeligt navn: " + superhero.getRealName());
+            System.out.println("Superkraft: " + superhero.getSuperPower());
+            System.out.println("Oprindelsesår: " + superhero.getCreationYear());
+            System.out.println("Er menneske: " + superhero.isHuman());
+            System.out.println("Styrkeniveau: " + superhero.getPower());
+            System.out.println("\u001b[1m-\u001b[0m".repeat(20));
+        }
     }
 }
