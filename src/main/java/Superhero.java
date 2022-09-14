@@ -15,13 +15,46 @@ public class Superhero {
         this.power = power;
     }
 
-    @Override
-    public String toString() {
+    //@Override
+    /*public String toString() {
         return " Rigtig navn: " + realName +
                 "\n Heltenavn: " + heroName +
                 "\n År hvor helten blev til: " + creationYear +
                 "\n Superkræft: " + superPower +
                 "\n Er helten menneske?: " + isHuman +
                 "\n Styrke: " + power;
+    }
+     */
+
+    public String getHeroName() {
+        if (heroName == ""){
+            return "Intet superhelte navn";
+        }else {
+            return heroName;
+        }
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public String getSuperPower() {
+        return superPower;
+    }
+
+    public int getCreationYear() {
+        return creationYear;
+    }
+
+    public double getPower() {
+        return power;
+    }
+
+    public String isHuman() {
+        if (isHuman == true){
+            return "Ja";
+        }else {
+            return "Nej";
+        }
     }
 }

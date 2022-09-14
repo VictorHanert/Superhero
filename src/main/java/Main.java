@@ -69,10 +69,16 @@ public class Main {
 
     public void printSuperHero() {
         System.out.println("Liste af superhelte");
-        System.out.println("-".repeat(20));
-        for (Object hero : database.superhero) {
-            System.out.println(hero);
-            System.out.println("-".repeat(20));
+        System.out.println("\u001b[1m-\u001b[0m".repeat(20));
+        for (Superhero superhero : database.getAllSuperheroes()){
+            System.out.println("Superhelte navn: " + superhero.getHeroName());
+            System.out.println("Superkraft: " + superhero.getSuperPower());
+            System.out.println("Virkeligt navn: " + superhero.getRealName());
+            System.out.println("Oprindelsesår: " + superhero.getCreationYear());
+            System.out.println("Er menneske: " + superhero.isHuman());
+            System.out.println("Styrke: " + superhero.getPower());
+            System.out.println("\u001b[1m-\u001b[0m".repeat(20));
+
         }
         System.out.println(" \n");
         createSuperHero();

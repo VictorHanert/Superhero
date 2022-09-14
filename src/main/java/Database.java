@@ -8,4 +8,19 @@ public class Database {
         Superhero hero = new Superhero(realName,heroName,creationYear,superPower,isHuman, power);
         superhero.add(hero);
     }
+
+    // getter til superhero arrayet
+    public ArrayList<Superhero> getAllSuperheroes(){
+        return superhero;
+    }
+
+    public Superhero searchForSuperhero(String searchTerm){
+        for (Superhero superhero : superhero){
+            String name = superhero.getHeroName().toLowerCase();
+            if (name.contains(searchTerm.toLowerCase())){
+                return superhero;
+            }
+        }
+        return null;
+    }
 }
