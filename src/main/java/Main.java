@@ -13,14 +13,21 @@ public class Main {
     }
 
     public void start() {
+        velkomst();
         createSuperHero();
-        printSuperHero();
+    }
+
+    public void velkomst() {
+        System.out.println("\u001b[1mVelkommen til Superhelte-databasen!\u001b[0m");
+        System.out.println("Her kan du oprette dine yndlings superhelte og holde overblik og sammenligne dem.\n");
     }
 
     public void createSuperHero() {
         do {
-            System.out.println("Velkommen til Superhelte-database.");
+            System.out.println("\u001b[1mMenu\u001b[0m");
             System.out.println("Tryk 1) for at oprette");
+            System.out.println("Tryk 2) for at at se liste med superhelte");
+            System.out.println("Tryk 3) for at at søge efter superhelt");
             System.out.println("Tryk 9) for at afslutte");
             menuvalg = scan.nextInt();
             scan.nextLine(); // Fixer Scanner-bug
@@ -48,12 +55,16 @@ public class Main {
                 double power = scan.nextDouble();
 
                 database.createSuperhero(realName, heroName, creationYear, superPower, isHuman, power);
-                start();
+                createSuperHero();
 
+            } else if (menuvalg == 2) {
+                printSuperHero();
+            } else if (menuvalg == 3) {
+                searchSuperHero();
             } else if (menuvalg == 9) {
-                System.out.println("Program afsluttes!");
+                System.exit(1);
             }
-        } while (menuvalg != 1 && menuvalg != 9);
+        } while (menuvalg != 1 && menuvalg != 2 && menuvalg != 9);
     }
 
     public void printSuperHero() {
@@ -62,7 +73,12 @@ public class Main {
         for (Object hero : database.superhero) {
             System.out.println(hero);
             System.out.println("-".repeat(20));
-            start();
         }
+        System.out.println(" \n");
+        createSuperHero();
+    }
+
+    public void searchSuperHero() {
+
     }
 }
