@@ -6,8 +6,6 @@ public class Database {
 
     public void createSuperhero(String realName,String heroName,int creationYear,String superPower,boolean isHuman, double power) {
         Superhero hero = new Superhero(realName,heroName,creationYear,superPower,isHuman, power);
-        //heroList[index] = hero;
-        //index++;
         superhero.add(hero);
     }
 }

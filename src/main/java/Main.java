@@ -1,14 +1,14 @@
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
-    Scanner scan = new Scanner(System.in);
+    Scanner scan = new Scanner(System.in).useLocale(Locale.ENGLISH);
     Database database = new Database();
     int menuvalg;
 
     public static void main(String[] arg) {
         Main program = new Main();
-
         program.start();
     }
 
@@ -20,8 +20,8 @@ public class Main {
     public void createSuperHero() {
         do {
             System.out.println("Velkommen til Superhelte-database.");
-            System.out.println("1) for at oprette");
-            System.out.println("9) for at afslutte");
+            System.out.println("Tryk 1) for at oprette");
+            System.out.println("Tryk 9) for at afslutte");
             menuvalg = scan.nextInt();
             scan.nextLine(); // Fixer Scanner-bug
 
@@ -36,13 +36,15 @@ public class Main {
 
                 System.out.print("Hvornår blev superhelten skabt? ");
                 int creationYear = scan.nextInt();
+                scan.nextLine();
 
                 System.out.print("Hvilke superkræfter besidder superhelten? ");
                 String superPower = scan.nextLine();
 
+                System.out.println("Er superhelten et menneske? (j / n)");
                 boolean isHuman = scan.nextLine().substring(0, 1).equalsIgnoreCase("j");
 
-                System.out.println("Hvor stor en kræft har helten (hvis 1 er for et menneske) ");
+                System.out.println("Hvor stor en kræft har helten (hvis 1.0 er for et menneske) ");
                 double power = scan.nextDouble();
 
                 database.createSuperhero(realName, heroName, creationYear, superPower, isHuman, power);
