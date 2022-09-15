@@ -128,25 +128,42 @@ public class UserInterface {
 
             System.out.println("Rediger navn: " + superhero.getRealName());
             String newRealName = scan.nextLine();
-            if (!newRealName.isEmpty()) {superhero.setRealName(newRealName);}
-            System.out.println("\u001b[1mNyt navn: \u001b[0m" + superhero.getRealName() + "\n");
+            if (!newRealName.isEmpty()) {
+                superhero.setRealName(newRealName);
+                System.out.println("\u001b[1mNyt navn: \u001b[0m" + superhero.getRealName() + "\n");
+            }
+
 
             System.out.println("Rediger superkraft: " + superhero.getSuperPower());
             String newSuperPower = scan.nextLine();
-            if (!newSuperPower.isEmpty()) {superhero.setSuperPower(newSuperPower);}
+            if (!newSuperPower.isEmpty()) {
+                superhero.setSuperPower(newSuperPower);
+                System.out.println("\u001b[1mSuperkraft opdateret til: \u001b[0m" + superhero.getSuperPower() + "\n");
+            }
 
             System.out.println("Rediger oprindelsesår: " + superhero.getCreationYear());
             String newCreationYear = scan.nextLine();
-            if (!newCreationYear.isEmpty()) {superhero.setCreationYear(newCreationYear);}
+            if (!newCreationYear.isEmpty()) {
+                superhero.setCreationYear(newCreationYear);
+                System.out.println("\u001b[1mOprindelsesår opdateret til: \u001b[0m" + superhero.getCreationYear() + "\n");
+            }
 
             System.out.println("Rediger menneskestatus (Ja / Nej): " + superhero.isHuman());
             String newIsHuman = scan.nextLine();
-            if (!newIsHuman.isEmpty()) {superhero.setIsHuman(newIsHuman);}
+            if (!newIsHuman.isEmpty()) {
+                superhero.setIsHuman(newIsHuman);
+                System.out.println("\u001b[1mMenneskestatus opdateret til: \u001b[0m" + superhero.isHuman() + "\n");
+            }
 
             System.out.println("Rediger styrkeniveau (1.0 er et menneske): " + superhero.getPower());
             String newPower = scan.nextLine();
-            if (!newPower.isEmpty()) {superhero.setPower(newPower);}
+            if (!newPower.isEmpty()) {
+                superhero.setPower(newPower);
+                System.out.println("\u001b[1mStyrkeniveau opdateret til: \u001b[0m" + superhero.getPower() + "\n");
+            }
         }
+        System.out.println("Helten blev opdateret og gemt.");
+        System.out.println("\u001b[1m-\u001b[0m".repeat(20));
         menu();
     }
 }
