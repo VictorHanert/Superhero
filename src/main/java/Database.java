@@ -21,6 +21,7 @@ public class Database {
                 return superhero;
             }
         }
+        //hvis ingen fundet
         return null;
     }
 }
