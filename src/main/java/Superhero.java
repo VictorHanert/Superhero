@@ -46,4 +46,20 @@ public class Superhero {
             return "Nej";
         }
     }
+
+    public void setRealName(String newRealName) {
+        this.realName = newRealName;
+    }
+    public void setSuperPower(String newSuperPower) {
+        this.superPower = newSuperPower;
+    }
+    public void setCreationYear(String newCreationYear) {
+        this.creationYear = Integer.parseInt(newCreationYear);
+    }
+    public void setIsHuman(String newIsHuman) {
+        this.isHuman = Boolean.parseBoolean(newIsHuman);
+    }
+    public void setPower(String newPower) {
+        this.power = Double.parseDouble(newPower);
+    }
 }
