@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Database {
 
-    ArrayList<Superhero> superhero = new ArrayList<>();
+    ArrayList<Superhero> superheroes = new ArrayList<>();
 
     // TEST DATA
     public void createTestData(){
@@ -14,24 +14,25 @@ public class Database {
         createSuperhero("Bruce Banner", "Hulk", 1967, "Stærk", false,4);
     }
 
-    public void createSuperhero(String realName,String heroName,int creationYear,String superPower,boolean isHuman, double power) {
-        Superhero hero = new Superhero(realName,heroName,creationYear,superPower,isHuman, power);
-        superhero.add(hero);
+    public Superhero createSuperhero(String realName,String heroName,int creationYear,String superPower,boolean isHuman, double power) {
+        Superhero newSuperhero = new Superhero(realName,heroName,creationYear,superPower,isHuman, power);
+        superheroes.add(newSuperhero);
+        return newSuperhero;
     }
 
     // getter til superhero arrayet
     public ArrayList<Superhero> getAllSuperheroes(){
-        return superhero;
+        return superheroes;
     }
 
-    public Superhero searchForSuperhero(String searchTerm){
-        for (Superhero superhero : superhero){
+    public ArrayList<Superhero> searchForSuperhero(String searchTerm){
+        ArrayList<Superhero> searchResults = new ArrayList<>(); // creating arraylist of superheroes
+        for (Superhero superhero : superheroes){
             String name = superhero.getHeroName().toLowerCase();
             if (name.contains(searchTerm.toLowerCase())){
-                return superhero;
+                searchResults.add(superhero);
             }
         }
-        //hvis ingen fundet
-        return null;
+        return searchResults;
     }
 }
