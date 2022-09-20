@@ -6,7 +6,6 @@ public class UserInterface {
 
     public Scanner scan = new Scanner(System.in).useLocale(Locale.ENGLISH);
     public Database database = new Database();
-    int menuvalg;
 
     public void start() {
         velkomst();
@@ -15,7 +14,6 @@ public class UserInterface {
 
     public void velkomst() {
         //database.createTestData(); // NOTE: Test Data, fjern når færdig
-
         System.out.println("\u001b[1mVelkommen til Superhelte-databasen!\u001b[0m");
         System.out.println("Her kan du oprette dine yndlings superhelte og holde overblik og sammenligne dem.\n");
     }
@@ -28,29 +26,25 @@ public class UserInterface {
         System.out.println("Tryk 4) for at at redigere data til en superhelt");
         System.out.println("Tryk 9) for at afslutte");
 
-        //menuvalg = scan.nextInt();
-        //scan.nextLine(); // Fixer Scanner-bug
-        // Input for menu choice
         int menuInput = 0;
         boolean inputError;
-        while(menuInput != 9){
+        while (menuInput != 9) {
             do {
-                try{
+                try {
                     menuInput = scan.nextInt();
                     scan.nextLine(); // Fixer Scanner-bug
                     handleMenuInput(menuInput);
                     inputError = false;
-                }
-                catch(InputMismatchException e){
+                } catch (InputMismatchException e) {
                     System.out.println("Ugyldig input prøv venligst igen!");
                     inputError = true;
                     scan.nextLine();
                 }
-            }while(inputError == true);
+            } while (inputError == true);
         }
     }
 
-        public void handleMenuInput(int menuInput) {
+    public void handleMenuInput(int menuInput) {
         if (menuInput == 1) {
             createSuperHero();
         } else if (menuInput == 2) {
@@ -73,9 +67,23 @@ public class UserInterface {
         System.out.println("Indtast superheltens rigtige navn: ");
         String realName = scan.nextLine();
 
-        System.out.print("Hvornår blev superhelten skabt? ");
+        /*System.out.print("Hvornår blev superhelten skabt? ");
         int creationYear = scan.nextInt();
         scan.nextLine();
+         */
+        int creationYear = 0;
+        boolean creationYearInputError;
+        do {
+            try{
+                System.out.println("Hvornår blev superhelten skabt?");
+                creationYear = Integer.parseInt(scan.nextLine()); // Inputting creation year of superhero
+                creationYearInputError = false;
+            }
+            catch (NumberFormatException e){
+                System.out.println("Ugyldigt input, prøv igen");
+                creationYearInputError = true;
+            }
+        }while(creationYearInputError == true);
 
         System.out.print("Hvilke superkræfter besidder superhelten? ");
         String superPower = scan.nextLine();
@@ -83,8 +91,23 @@ public class UserInterface {
         System.out.println("Er superhelten et menneske? (j / n)");
         boolean isHuman = scan.nextLine().substring(0, 1).equalsIgnoreCase("j");
 
-        System.out.println("Hvor stor en kræft har helten (hvis 1.0 er for et menneske) ");
+        /*System.out.println("Hvor stor en kræft har helten (hvis 1.0 er for et menneske) ");
         double power = scan.nextDouble();
+
+         */
+        double power = 0;
+        boolean powerInputError;
+        do {
+            try{
+                System.out.println("Hvor stor en kræft har helten (hvis 1 er for et menneske) ");
+                power = Double.parseDouble(scan.nextLine()); // Inputting power of superhero
+                powerInputError = false;
+            }
+            catch (NumberFormatException e){
+                System.out.println("Ugyldigt input, prøv igen");
+                powerInputError = true;
+            }
+        }while(powerInputError == true);
 
         database.createSuperhero(realName, heroName, creationYear, superPower, isHuman, power);
         System.out.println("\u001b[1mSuperhelt er nu oprettet. \u001b[0m\n");
@@ -94,7 +117,7 @@ public class UserInterface {
     public void printSuperHero() {
         System.out.println("\u001b[1mListe af superhelte\u001b[0m");
         System.out.println("\u001b[1m-\u001b[0m".repeat(20));
-        for (Superhero superhero : database.getAllSuperheroes()){
+        for (Superhero superhero : database.getAllSuperheroes()) {
             System.out.println("Superhelte navn: \u001b[1m" + superhero.getHeroName() + "\u001b[0m");
             System.out.println("Virkeligt navn: " + superhero.getRealName());
             System.out.println("Superkraft: " + superhero.getSuperPower());
