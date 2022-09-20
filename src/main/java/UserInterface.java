@@ -1,10 +1,11 @@
+import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
 public class UserInterface {
 
-    Scanner scan = new Scanner(System.in).useLocale(Locale.ENGLISH);
-    Database database = new Database();
+    public Scanner scan = new Scanner(System.in).useLocale(Locale.ENGLISH);
+    public Database database = new Database();
     int menuvalg;
 
     public void start() {
@@ -13,7 +14,7 @@ public class UserInterface {
     }
 
     public void velkomst() {
-        database.createTestData(); // NOTE: Test Data, fjern når færdig
+        //database.createTestData(); // NOTE: Test Data, fjern når færdig
 
         System.out.println("\u001b[1mVelkommen til Superhelte-databasen!\u001b[0m");
         System.out.println("Her kan du oprette dine yndlings superhelte og holde overblik og sammenligne dem.\n");
@@ -26,18 +27,39 @@ public class UserInterface {
         System.out.println("Tryk 3) for at at søge efter bestemt superhelt");
         System.out.println("Tryk 4) for at at redigere data til en superhelt");
         System.out.println("Tryk 9) for at afslutte");
-        menuvalg = scan.nextInt();
-        scan.nextLine(); // Fixer Scanner-bug
 
-        if (menuvalg == 1) {
+        //menuvalg = scan.nextInt();
+        //scan.nextLine(); // Fixer Scanner-bug
+        // Input for menu choice
+        int menuInput = 0;
+        boolean inputError;
+        while(menuInput != 9){
+            do {
+                try{
+                    menuInput = scan.nextInt();
+                    scan.nextLine(); // Fixer Scanner-bug
+                    handleMenuInput(menuInput);
+                    inputError = false;
+                }
+                catch(InputMismatchException e){
+                    System.out.println("Ugyldig input prøv venligst igen!");
+                    inputError = true;
+                    scan.nextLine();
+                }
+            }while(inputError == true);
+        }
+    }
+
+        public void handleMenuInput(int menuInput) {
+        if (menuInput == 1) {
             createSuperHero();
-        } else if (menuvalg == 2) {
+        } else if (menuInput == 2) {
             printSuperHero();
-        } else if (menuvalg == 3) {
+        } else if (menuInput == 3) {
             searchSuperHero();
-        } else if (menuvalg == 4) {
+        } else if (menuInput == 4) {
             editSuperHero();
-        } else if (menuvalg == 9) {
+        } else if (menuInput == 9) {
             System.exit(1); // afslutter programmet
         }
     }
@@ -65,6 +87,7 @@ public class UserInterface {
         double power = scan.nextDouble();
 
         database.createSuperhero(realName, heroName, creationYear, superPower, isHuman, power);
+        System.out.println("\u001b[1mSuperhelt er nu oprettet. \u001b[0m\n");
         menu();
     }
 
@@ -115,7 +138,6 @@ public class UserInterface {
         System.out.println("Indtast heltenavn for den helt der skal redigeres: ");
         String searchTerm = scan.nextLine();
         Superhero superhero = database.searchForSuperhero(searchTerm);
-
         if (superhero == null) {
             System.out.println("Superhelt ikke fundet");
             System.out.println("------------------------------------");
@@ -128,7 +150,7 @@ public class UserInterface {
 
             System.out.println("Rediger navn: " + superhero.getRealName());
             String newRealName = scan.nextLine();
-            if (!newRealName.isEmpty()) {
+            if (!newRealName.isEmpty()) { //hvis nyt-navn ikke er tomt:
                 superhero.setRealName(newRealName);
                 System.out.println("\u001b[1mNyt navn: \u001b[0m" + superhero.getRealName() + "\n");
             }
