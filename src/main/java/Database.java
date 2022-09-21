@@ -8,7 +8,7 @@ public class Database {
     public void createTestData(){
         createSuperhero("Victor Hanert", "Actionman", 2001, "Lækker", true,999);
         createSuperhero("Bruce Wayne", "Batman", 1965, "Rig", true,2);
-        createSuperhero("Peter Parker", "Superman", 1970, "Edderkoppeevner", true,3);
+        createSuperhero("Peter Parker", "Spider-man", 1970, "Edderkoppeevner", true,3);
         createSuperhero("Tony Stark", "Iron Man", 1998, "Flyve", true,1.2);
         createSuperhero("", "Black Panther", 1973, "Sort", true,5.5);
         createSuperhero("Bruce Banner", "Hulk", 1967, "Stærk", false,4);
@@ -20,7 +20,7 @@ public class Database {
         return newSuperhero;
     }
 
-    // getter til superhero arrayet
+    // getter til superhero array
     public ArrayList<Superhero> getAllSuperheroes(){
         return superheroes;
     }
@@ -34,5 +34,10 @@ public class Database {
             }
         }
         return searchResults;
+    }
+
+    public boolean deleteSuperhero(Superhero superhero) {
+        getAllSuperheroes().remove(superhero);
+        return true;
     }
 }
